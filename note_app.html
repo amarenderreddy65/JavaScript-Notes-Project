@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note Application website</title>
+</head>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;        
+    }
+
+    #main{
+        width: 100%;
+        height: 100vh;
+
+        padding: 10px;
+
+        background-color: aqua;
+
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .note{
+        width: 250px;
+        height: 200px;
+        margin: 15px;
+        background-color: white;
+        margin-top: 30px;
+    }
+
+    .tool{
+        width: 100%;
+        padding: 0px;
+
+        background-color: black;
+        color: white;
+
+        display: flex;
+        justify-content:end;      
+    }
+    .tool i{
+        padding: 5px;
+        cursor: pointer;
+    }
+
+    .note textarea{
+        border:none;
+        width: 100%;
+        height: 100%;
+        resize: none;
+        padding: 10px;
+        font-size: 12px;        
+    }
+    .note textarea:focus{
+        border: 0;
+        outline: 0;        
+    }
+    
+    #addBtn{
+        position: fixed;
+        right: 15px;
+        top: 15px;
+        background-color: black;
+        color: white;
+        border: 0;
+        outline: 0;
+        border-radius: 5px;
+        padding: 5px;
+    }
+
+</style>
+<body>
+    
+    <button id="addBtn"><i class="fa-solid fa-plus"></i>&nbsp;&nbsp;Add Note</button>
+
+    <div id="main">
+        <!-- <div class="note">
+            <div class="tool">
+                <i class="fa-solid fa-trash"></i>
+                <i class="fa-solid fa-floppy-disk"></i>
+            </div>
+            <textarea id="" ></textarea>
+        </div>
+
+        <div class="note">
+            <div class="tool">
+                <i class="fa-solid fa-trash"></i>
+                <i class="fa-solid fa-floppy-disk"></i>
+            </div>
+            <textarea id="" ></textarea>
+        </div>
+
+        <div class="note">
+            <div class="tool">
+                <i class="fa-solid fa-trash"></i>
+                <i class="fa-solid fa-floppy-disk"></i>
+            </div>
+            <textarea id="" ></textarea>
+        </div>
+
+        <div class="note">
+            <div class="tool">
+                <i class="fa-solid fa-trash"></i>
+                <i class="fa-solid fa-floppy-disk"></i>
+            </div>
+            <textarea id="" ></textarea>
+        </div>
+
+        <div class="note">
+            <div class="tool">
+                <i class="fa-solid fa-trash"></i>
+                <i class="fa-solid fa-floppy-disk"></i>
+            </div>
+            <textarea id="" ></textarea>
+        </div>
+
+        <div class="note">
+            <div class="tool">
+                <i class="fa-solid fa-trash"></i>
+                <i class="fa-solid fa-floppy-disk"></i>
+            </div>
+            <textarea id="" ></textarea>
+        </div> -->
+        
+    </div>
+
+    <script src="https://kit.fontawesome.com/314d5dc247.js" crossorigin="anonymous"></script>
+
+</body>
+<script>
+    const addbtn = document.querySelector("#addBtn");
+
+    //we use QuerySelector instead of "GetElementById" or  GetElementByClassName,
+    // it provides Varierty of Options.
+
+    const main = document.querySelector("#main");
+
+    addbtn.addEventListener("click", function() {addNote()});
+    
+
+    // <div class="note">
+    //     <div class="tool">
+    //         <i class="fa-solid fa-trash"></i>
+    //         <i class="fa-solid fa-floppy-disk"></i>
+    //     </div>
+    //     <textarea id="" ></textarea>
+    // </div>
+
+    const saveNotes = () => {
+        const notes = document.querySelectorAll(".note textarea");
+        console.log(notes);
+
+        const data = []; //Creating an Dynamic Array to store dynamic notes data.
+
+        notes.forEach((note1) =>
+        {
+            data.push(note1.value)
+        });
+
+        console.log(data);
+
+        if(data.length === 0)
+        {
+            localStorage.removeItem("notes");
+        }
+        else
+        {
+            localStorage.setItem("notes",JSON.stringify(data));
+        }
+        
+        //here we just added the array-data into website local storage.
+
+    }
+
+    const addNote = (text = "") => {
+        const note = document.createElement("div");
+        note.classList.add("note");
+        note.innerHTML = `
+        <div class="tool">
+            <i class="trash fa-solid fa-trash"></i>
+            <i class="save fa-solid fa-floppy-disk"></i>
+        </div>
+        <textarea id="" >${ text }</textarea>`;
+        
+        main.appendChild(note);
+        
+        saveNotes();
+
+        note.querySelector(".trash").addEventListener("click", function() { note.remove(); saveNotes();});
+
+        note.querySelector(".save").addEventListener("click", function() { saveNotes(); });
+
+        note.querySelector("textarea").addEventListener("focusout", function() { saveNotes(); });
+
+    }
+
+    //self calling functin which loads when browser just opened.
+    (function ()
+     {
+        //Bringing the "notes " from the local storage as "lsnotes".
+        //Pasring from object -- array.
+        const lsnotes = JSON.parse(localStorage.getItem("notes"));
+        if(lsnotes === null)
+        {
+            addNote();
+            console.log("called add note function once auto call")
+        }
+        else
+        {
+            //extracting from storage and adding respective notes to "addNote"
+            lsnotes.forEach((lsnotes) => {
+                addNote(lsnotes); 
+                //sending ls notes from here to "addnote()" = "addnote(text = "")/Empty."
+            }
+            )
+        }
+        
+        //saveNotes();
+
+        // if(lsnotes.length === 0)
+        // {
+        //     localStorage.removeItem("notes");
+        // }
+        // else
+        // {
+        //     //addNote();
+        // }
+        console.log("console text")
+        console.log("ls notes : "+lsnotes);
+     }
+    )()
+
+
+    //Project Successfully Completed.
+
+</script>
+</html>
