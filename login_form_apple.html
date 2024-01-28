@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form Apple</title>
+    <style>
+        *{
+            padding: 0;
+            border: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: white;
+            padding: 10px;
+
+            display: grid;
+
+            justify-content: center;
+            align-items: center;            
+        }
+
+        #box{
+            background-color: orange;
+            width: 200px;
+            height: 200px;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+            
+            border-radius: 30px;
+        }
+
+        #leafbox{
+            height: 100px;
+            width: 200px;
+
+            /* background-color: red; */
+            padding-left: 50px;
+        }
+        #leaf_box{
+            height: 100px;
+            width: 100px;
+            background-color: green;          
+
+            border-top-left-radius: 150px;            
+            border-bottom-right-radius: 150px;
+        }
+        
+
+        form{
+            justify-content: center;
+            align-items: center;
+
+            padding: 40px;
+            padding-top: 80px;
+            
+
+            /* display: grid; */
+
+            /* padding: 8px;
+            padding-left: 30px; */
+            background-color: white;
+            
+            width: 200px;
+            height: 200px;
+
+            font-size: 8px;          
+
+            border-top-right-radius: 200px;
+            border-bottom-left-radius: 200px;
+
+            border-top-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+        }
+
+        #btn1{
+            padding: 1px 5px;
+            
+            background-color: grey;
+            color: white;
+            font-size: 12px;           
+        }      
+
+        #username{
+            width: 120px;
+            box-shadow: 0px 0px 5px grey ;
+            background-color: pink;
+        }
+        #username:focus{
+            border: solid 1px springgreen;
+            outline: none;                        
+        }
+        #password{
+            width: 120px;
+            box-shadow: 0px 0px 5px grey ;
+            background-color: pink;
+        }
+        #password:focus{
+            border: solid 1px springgreen;
+            outline: none;                        
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div id="leafbox">
+        <div id="leaf_box"></div>
+    </div>   
+    
+    
+    <div id="box">        
+        <!-- <div id="upperRight"></div> -->
+        <form>            
+            <!-- <label for="user_name">User Name : </label> -->
+            <input id="username"  name="user_name" type="text" placeholder="username">
+            <br><br>
+            <!-- <label for="passw">Password : </label> -->
+            <input  id="password" name="passw" type="password" placeholder="password">
+            <br>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="submit" id="btn1">Login</button>            
+        </form>
+        <!-- <div id="bottomLeft"></div> -->
+    </div>
+</body>
+</html>
